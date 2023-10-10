@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+<style>
+    /* #aaa{
+        display: none;
+    } */
+</style>
+</head>
+<body>
+
+<ul id="myList"><li>Coffee</li><li>Tea</li></ul>
+<p id="demo">单击按钮将项目添加到列表中</p>
+<button onclick="myFunction()">点我</button>
+<script>
+function myFunction(){
+	var node=document.createElement("LI");
+	var textnode=document.createTextNode("Water");
+	node.appendChild(textnode);
+     node.innerHTML='<div class="edittt">修改</div><div class="edittime"></div>';
+	document.getElementById("myList").appendChild(node);
+    node.setAttribute('id','aaa');
+}
+
+
+
+
+
+$(document).ready(function(){
+  var localStorage;
+
+  $(".add").click(function CREATE() {
+    if(localStorage.count === undefined) {
+      localStorage.count = 0;
+    }
+    var i = localStorage.count;
+    var user = JSON.parse(localStorage.getItem("usertext" + i));
+    document.getElementsByClassName("classname" + i).innerHTML = user;
+    localStorage.count = Number(localStorage.count + 1);
+    var div = document.createElement("div");
+    div.className = "classname" + i;
+    const node = document.createTextNode("This is a paragraph.");
+    div.appendChild(node);
+    div.setAttribute('id', 'addtext');
+    document.getElementById('scroll').appendChild(div);
+    div.innerHTML = '<button onclick="gogogo.call(this)" class="edittt" >修改</button><div class="edittime"></div>';
+    var justedit = $("#addtext:first-child");
+    justedit.order = i;
+    alert(i);
+  });
+
+  function gogogo() {
+    var judge = 1;
+    alert(i);
+    var i = Number(this.order);
+    if(judge === 1) {
+      this.innerHTML = '保存';
+      document.getElementsByClassName("classname" + i).setAttribute('contenteditable', 'true');
+      judge = 0;
+    } else {
+      this.innerHTML = '修改';
+      var obj = document.getElementsByClassName("classname" + i).innerHTML;
+      localStorage.setItem("usertext" + i, JSON.stringify(obj));
+      alert('已保存');
+    }
+  }
+});
+
+
+
+
+
+</script>
+<p><strong>注意:</strong><br>首先创建一个节点，<br> 然后创建一个文本节点，<br>然后将文本节点添加到LI节点上。<br>最后将节点添加到列表中。</p>
+
+</body>
+</html>
+
+
+
